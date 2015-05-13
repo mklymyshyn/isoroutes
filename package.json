@@ -34,6 +34,8 @@
 	"react": "*",
 	"react-tools": "*",
 	"node-jsx": "*",
+	"js-csp": "*",
+	"transducers.js": "*",
 	"jsx-loader": "^0.12.2",
 	"chai": "*",
 	"mocha": "*",
