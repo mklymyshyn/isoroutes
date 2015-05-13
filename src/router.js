@@ -2,7 +2,6 @@
 
 var {Map, List} = require("immutable");
 var {map, compose, seq} = require("transducers.js");
-var {take, put, chan, go} = require("js-csp");
 var params = require("./state").params;
 
 /**
@@ -11,11 +10,11 @@ var params = require("./state").params;
  */
 function router(reactd_urls) {
     // replace `/xxx/:param/` with appropriate regexp
-    var baseXP = /[\/][\:][A-Za-z0-9_]+/;
+    var baseXP = /[\/][\:][A-Za-z0-9_]+/g;
     var paramsXP = url => {
         return url.replace(baseXP,
-                           "\/\([A-Za-z0-9\\.\\,\\+\\_\\-]+\)")
-                  .replace(/\//, "[\\/]");
+                           "\/\([A-Za-z0-9\\.\\,\\+\\_\\-\%]+\)")
+                  .replace(/\//g, "[\\/]");
     };
     // create RegExp for names
     var namesXP = url => {

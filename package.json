@@ -1,40 +1,41 @@
 {
-  "name": "isoroutes",
-  "version": "0.0.1",
-  "description": "ReactJS Isomorphic Router",
+    "name": "isoroutes",
+    "version": "0.0.1",
+    "description": "Isomorphic Router on CSP channels",
 
-  "keywords": [
-    "csp", "async", "concurrency", "channel",
-    "isomorphism", "isomorphic", "rendering", "router", "react",
-    "es6", "generators", "yield", "coroutines"
-  ],
-  "bugs": {
-    "email": "klymyshyn+isorouter@gmail.com",
-    "url": "https://github.com/joymax/isorouter/issues"
-  },
-  "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
-  },
-  "files": [
-    "src", "README.md", "CHANGELOG.md", "LICENSE"
-  ],
-  "main": "./src/isoroutes.js",
-  "dependencies": {},
-  "devDependencies": {
-    "babel-runtime": "^5.2.17",
-    "jsx-loader": "^0.12.2",
-    "node-jsx": "*",
-    "react": "*",
-    "babel-core": "^5.2.17",
-    "babel-loader": "^5.0.0",
-    "regenerator": "^0.8.22",
-    "regenerator-loader": "^2.0.0",
-    "chai": "*",
-    "mocha": "*"
-  },
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "keywords": [
+      "csp", "async", "concurrency", "channel",
+	"isomorphism", "isomorphic", "rendering", "router", "react",
+	"es6", "generators", "yield", "coroutines"
+    ],
+    "bugs": {
+	"email": "klymyshyn+isoroutes@gmail.com",
+	"url": "https://github.com/joymax/isorouter/issues"
+    },
+    "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
+    "license": {
+	"type": "MIT",
+	"url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
+    },
+    "files": [
+      "src", "README.md", "CHANGELOG.md", "LICENSE"
+    ],
+    "main": "./src/isoroutes.js",
+    "dependencies": {},
+    "devDependencies": {
+	"babel-runtime": "^5.2.17",
+	"jsx-loader": "^0.12.2",
+	"node-jsx": "*",
+	"react": "*",
+	"babel-core": "^5.2.17",
+	"babel-loader": "^5.0.0",
+	"regenerator": "^0.8.22",
+	"regenerator-loader": "^2.0.0",
+	"chai": "*",
+	"mocha": "*",
+	"mocha-traceur": "*"
+    },
+    "scripts": {
+	"test": "./node_modules/mocha/bin/mocha --harmony --compilers js:mocha-traceur:test/compilers.js"
   }
 }

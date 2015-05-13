@@ -36,7 +36,10 @@ function notFound(_, res) {
 /**
  * Default Node.JS server handler
  */
-function server(routes, template=renderJade(DEFAULT_TPL, DEFAULT_TPL_OPTS), error=notFound) {
+function server(routes, template, error) {
+    var template = template || renderJade(DEFAULT_TPL, DEFAULT_TPL_OPTS),
+        error = error || notFound;
+
     return (request, response) => {
         /**
          * The main idea behind is to generate

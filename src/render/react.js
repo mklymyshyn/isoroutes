@@ -30,12 +30,13 @@ var react = function (...components) {
         // 3) put state into React component
 
         // start CSP state routines
-        var channels = components.map((type, n) => {
+        var channels = components.map((type, cid) => {
             var stateCh = chan(),
                 component = React.createFactory(type),
-                id = componentId(type, n);
+                id = componentId(type, cid);
 
-            go(type.state(state, stateCh, n));
+            type.state ? go(type.state(state, stateCh, cid)) : null;
+
             go(function *() {
                 var pairsCh = chan(1);
                 yield wait(stateCh, pairsCh);
@@ -44,11 +45,12 @@ var react = function (...components) {
                 var context = Map(yield take(pairsCh));
 
                 // TODO: render STATE in case __state__=true in params
-                //var body = React.renderToString(component(context.toObject()));
+                // here we probably can create results factory?
                 yield put(renderCh, Map([
-                    [keys.id, n],
+                    [keys.id, cid],
                     [keys.state, context],
                     [keys.name, id],
+                    // generate render factories
                     [keys.render, {server: server(component),
                                    client: client(component)}]
                 ]));
