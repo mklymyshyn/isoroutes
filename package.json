@@ -36,6 +36,7 @@
 	"node-jsx": "*",
 	"js-csp": "*",
 	"transducers.js": "*",
+	"immutable": "*",
 	"jsx-loader": "^0.12.2",
 	"chai": "*",
 	"mocha": "*",
