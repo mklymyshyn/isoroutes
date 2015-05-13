@@ -7,7 +7,7 @@ var assert = require("chai").assert;
 var {keys, router, state, collect} = require("../src/isoroutes");
 var {timeout, take, put, chan, go} = require("js-csp");
 
-var react = require("isoroutes").render.react;
+var react = require("../src/isoroutes").render.react;
 var React = require("react/addons");
 var stripattrs = require("./helpers").stripReactAttrs;
 
