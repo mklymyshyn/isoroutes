@@ -10,15 +10,14 @@ var log = (r, rId) => {
 }
 
 var wait = function (srcCh, dstCh) {
-    return go(function *() {
-        var data = List(),
-            pair = null;
+  return go(function * () {
+    var data = List(), pair;
 
-        while((pair = yield take(srcCh)) !== CLOSED) {
-            data = data.push(pair);
-        }
-        yield put(dstCh, data);
-    })
+    while((pair = yield take(srcCh)) !== CLOSED) {
+      data = data.push(pair);
+    }
+    yield put(dstCh, data);
+  })
 };
 
 // jsonify attr

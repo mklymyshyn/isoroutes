@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+  head
+    title=pageTitle
+  body
+    h1 Isoroutes Example
+    ul
+      li
+        a(href="/")="home"
+    div#component!=component
+    div(class="hidden", style="display:none;" data-isoroutes-state="1", data-json!=state)
+    script(type='text/javascript' async="async" src="/build/app.js")

@@ -1,4 +1,5 @@
 "use strict";
+/**EMACS* js3-indent-level:8 **/
 
 var {Map, List} = require("immutable");
 var {map, compose, seq} = require("transducers.js");

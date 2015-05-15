@@ -9,6 +9,7 @@ var {take, put, chan, go} = require("js-csp");
  * requested components and when it's ready put it
  * into resulting channel (resultCh)
  */
+
 function collect(state, routes, resultCh) {
     var channel = chan(),
         total = routes(state, channel);
@@ -79,7 +80,7 @@ function params(state, route) {
 }
 
 module.exports = {
-    collect: collect,
-    build: build(),
-    params: params
+  collect: collect,
+  build: build(),
+  params:params
 }

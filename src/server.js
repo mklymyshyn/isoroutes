@@ -1,46 +1,41 @@
-"use strict"
+"use strict";
 
-var DEFAULT_TPL = "lib/guacamole/tpl/main.jade";
-var DEFAULT_TPL_OPTS = {};
-
-var {jsonattr, assertT} = require("./utils.js");
 var {take, put, chan, go} = require("js-csp");
 var {Map, List} = require("immutable");
-var keys = require("./router.js").keys;
-var {build, collect} = require("./state.js");
-
+var keys = require("./router").keys;
+var {build, collect} = require("./state");
+var jsonattr = require("./utils").jsonattr;
 
 /**
  * Default template engine to render within HTML template on server
  */
 function renderJade(templatePath, options) {
     var jade = require("jade");
-    assertT(jade !== null,
-           `Install Jade with "npm install jade" or
-           configure other template engine`);
-
     return (context) => jade.renderFile(
         templatePath,
-        Object.assign(options, context));
+      Object.assign(options, context));
 };
 
+
 function notFound(_, res) {
-    let text = "Not Found";
-    let html = "<h1>404: Not Found</h1>"
+    var text = "Not Found";
+    var html = "<h1>404: Not Found</h1>"
     res.statusCode = 404;
     res.statusMessage = text;
     res.setHeader('Content-Length', html.length);
     res.end(html);
 }
 
+
 /**
  * Default Node.JS server handler
  */
-function server(routes, template, error) {
-    var template = template || renderJade(DEFAULT_TPL, DEFAULT_TPL_OPTS),
-        error = error || notFound;
 
-    return (request, response) => {
+function server(routes, template, error) {
+  
+  var error = error || notFound;
+
+  return function (request, response) {
         /**
          * The main idea behind is to generate
          */
@@ -53,11 +48,11 @@ function server(routes, template, error) {
             return error(request, response);
         }
 
-        go(function *() {
+        go(function * () {
             var data = yield take(resultCh);
             var pool = Map();
 
-            let context = data.reduce((context, elem) => {
+            var context = data.reduce((context, elem) => {
                 // collect prerendered state to speedup re-render on the client
                 pool = pool.set(elem.get(keys.id), elem.get(keys.state));
 
@@ -77,4 +72,5 @@ function server(routes, template, error) {
         });
     }
 }
+
 module.exports = {server: server, renderJade: renderJade}
