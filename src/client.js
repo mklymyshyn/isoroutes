@@ -20,7 +20,6 @@ function client(state, routes) {
   go(function *() {
     var elem = null;
     while((elem = yield take(channel)) != CLOSED) {
-      console.log(elem);
       elem.get(keys.render).client(elem);
     }
   });

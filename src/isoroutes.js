@@ -5,10 +5,7 @@ var {collect, build} = require("./state");
 var utils = require("./utils");
 var client = require("./client"),
     render = {react: require("./render/react")};
-
-var server = null, renderJade = null, notFound = null;;
 var {server, renderJade, notFound} = require("./server");
-
 
 module.exports = {
   router: router,
