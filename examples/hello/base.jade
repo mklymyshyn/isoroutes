@@ -8,5 +8,5 @@ html(lang="en")
       li
         a(href="/")="home"
     div#component!=component
-    div(class="hidden", style="display:none;" data-isoroutes-state="1", data-json!=state)
+    script(type="text/state" data-isoroutes-state="1")!=state
     script(type='text/javascript' async="async" src="/build/app.js")
