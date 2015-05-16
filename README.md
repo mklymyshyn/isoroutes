@@ -1,6 +1,8 @@
 # Isoroutes
 
-.. image:: https://api.travis-ci.org/joymax/isoroutes.svg
+.. image:: 
+![alt tag](https://api.travis-ci.org/joymax/isoroutes.svg)
+
 
 Library to everyday needs related to isomorphic development with React.js and
 any server-ready JavaScript framework.
