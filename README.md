@@ -1,6 +1,5 @@
 # Isoroutes
 
-.. image:: 
 ![alt tag](https://api.travis-ci.org/joymax/isoroutes.svg)
 
 
