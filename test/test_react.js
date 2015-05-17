@@ -1,7 +1,5 @@
-//require("6to5/register")();
-
 // react-specific things
-require('node-jsx').install({extension: '.jsx'});
+//require('node-jsx').install({extension: '.jsx'});
 
 var assert = require("chai").assert;
 var {keys, router, state, collect} = require("../src/isoroutes");

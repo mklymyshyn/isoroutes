@@ -1,4 +1,3 @@
-//require("6to5/register")();
 
 var assert = require("chai").assert;
 var {keys, router, state, collect} = require("../src/isoroutes");
@@ -70,6 +69,4 @@ describe("State", () => {
             done();
         });
     });
-
-    // TODO: test getting state for multiple components
 });

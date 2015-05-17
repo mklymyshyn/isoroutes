@@ -33,16 +33,13 @@
 	"regenerator-loader": "^2.0.0",
 	"react": "*",
 	"react-tools": "*",
-	"node-jsx": "*",
 	"js-csp": "*",
-	"transducers.js": "*",
 	"immutable": "*",
 	"jsx-loader": "^0.12.2",
 	"chai": "*",
-	"mocha": "*",
-	"mocha-traceur": "*"
+	"mocha": "*"
     },
     "scripts": {
-	"test": "./node_modules/mocha/bin/mocha --harmony --compilers js:mocha-traceur:test/compilers.js"
+	"test": "./node_modules/mocha/bin/mocha --harmony"
   }
 }
