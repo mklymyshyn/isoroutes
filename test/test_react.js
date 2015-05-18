@@ -1,6 +1,3 @@
-// react-specific things
-//require('node-jsx').install({extension: '.jsx'});
-
 var assert = require("chai").assert;
 var {keys, router, state, collect} = require("../src/isoroutes");
 var {timeout, take, put, chan, go} = require("js-csp");

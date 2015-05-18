@@ -1,6 +1,6 @@
 var helpers = require("./helpers");
 var assert = require("chai").assert;
-var {keys, router, state, collect} = require("isoroutes");
+var {keys, router, state, collect} = require("../src/isoroutes");
 var {timeout, take, put, chan, go} = require("js-csp");
 var {Map, List} = require("immutable");
 
