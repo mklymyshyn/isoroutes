@@ -1,9 +1,9 @@
-# Isoroutes
+# isoroutes
 
 ![alt tag](https://api.travis-ci.org/joymax/isoroutes.svg)
 
 
-Library to everyday needs related to isomorphic development with React.js and
+Library to simplify isomorphic development with React.js and
 any server-ready JavaScript framework.
 
 
@@ -18,11 +18,11 @@ any server-ready JavaScript framework.
 
 1. **Why CSP channels?**
 
-	With CSP channels really easy organize asynchronous workflow which required for
+	With CSP channels it's easy organize asynchronous workflow required for
 	retreiving multiple components state. Code looks clean, testable and easy-to-understand.
 
 
 1. **It's only for React.js?**
 
 	No, it's possible to use with **any server-ready** framework (even vanilla JS!).
-	Just write correspond renderer and move on.
+	Just write correspond render module and move on.

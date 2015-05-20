@@ -12,6 +12,7 @@ var react = function (...components) {
   
   var client = (component) => {
     return (context) => {
+      console.log("Rendering, ", context);
       return React.render(
         component(context.get(keys.state).toObject()),
         document.getElementById(context.get(keys.name)));
@@ -19,6 +20,7 @@ var react = function (...components) {
   };
   var server = (component) => {
     return (context) => {
+      console.log(context.get(keys.state).toObject());
       return React.renderToString(
         component(context.get(keys.state).toObject()));
     }
@@ -32,16 +34,16 @@ var react = function (...components) {
     // start CSP state routines
     var channels = components.map((type, cid) => {
       var stateCh = chan(),
-          component = React.createFactory(type),
           id = componentId(type, cid);
-      
+
+      React.createFactory(type);
       type.state(state, stateCh, cid);
-      
+
       go(function *() {
         var pairsCh = chan(1);
         yield wait(stateCh, pairsCh);
         
-
+        console.log(type, type.type);
         // We should link state from template to component somehow
         var context = Map(yield take(pairsCh));
         
@@ -52,8 +54,8 @@ var react = function (...components) {
           [keys.state, context],
           [keys.name, id],
           // generate render factories
-          [keys.render, {server: server(component),
-                         client: client(component)}]
+          [keys.render, {server: server(type),
+                         client: client(type)}]
         ]));
       });
       
