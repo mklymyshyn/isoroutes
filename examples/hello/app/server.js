@@ -18,7 +18,7 @@ var routes = require("./hello").routes;
 require('node-jsx').install({extension: '.jsx'});
 
 // serving static
-var file = new(require('node-static').Server)();
+var file = new(require('node-static').Server)("../");
 var serve = (req, rsp) => file.serve(req, rsp);
 
 // node.js configuration
