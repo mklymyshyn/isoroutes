@@ -1,9 +1,17 @@
-//require("babel/register");
-//require('node-babel')();
+"use strict";
+
+require("babel/register")({
+  blacklist: ['regenerator']
+});
 
 var http = require('http');
+var isoroutes = require("isoroutes");
+var server = isoroutes.server,
+    serverUtils = isoroutes.serverUtils;
+var jade = require("jade");
 
-var {server, serverUtils} = require("../../src/isoroutes");
+//import {server, serverUtils} from "../../src/isoroutes";
+//import {routes} from "./hello";
 var routes = require("./hello").routes;
 
 // react-specific things
@@ -16,8 +24,9 @@ var serve = (req, rsp) => file.serve(req, rsp);
 // node.js configuration
 var port = 3000;
 
-// isomorphic part
-var template = serverUtils.renderJade("./base.jade", {});
+
+// here we need to render template with some tool
+var template = (context) => jade.renderFile("./base.jade", context);
 
 http.createServer(server(routes, template, serve)).listen(
   port, function(err) {

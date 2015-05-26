@@ -1,7 +1,7 @@
 "use strict";
 
-var {Map, List} = require("immutable");
-var {take, put, chan, go} = require("js-csp");
+import {Map, List} from "immutable";
+import {take, put, chan, go} from "js-csp";
 
 
 /*

@@ -1,11 +1,9 @@
 {
-    "name": "hello",
-    "version": "0.0.1",
-    "description": "Example app based on isoroutes",
+    "name": "isoroutes_example_hello",
+    "version": "0.0.2",
+    "description": "Example react.js-based application for isoroutes",
 
-    "keywords": [
-
-    ],
+    "keywords": [],
     "bugs": {
 	"email": "klymyshyn+isoroutes@gmail.com",
 	"url": "https://github.com/joymax/isorouter/issues"
@@ -20,21 +18,21 @@
 	"url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
     },
     "files": [
-
+      "README.md"
     ],
-    "main": "./src/server.js",
     "dependencies": {
-	"babel-runtime": "^5.2.17",
-	"babel-core": "^5.2.17",
-	"babel-loader": "^5.0.0",
-	"regenerator": "^0.8.22",
-	"regenerator-loader": "^2.0.0",
-	"react": "*",
-	"react-tools": "*",
-	"node-jsx": "*",
-	"js-csp": "*",
-	"transducers.js": "*",
-	"immutable": "*",
-	"jsx-loader": "^0.12.2"
+	"babel": ">=5.4.4",
+	"babel-runtime": "*",
+	"babel-loader": "*",
+	"core-js": "*",
+	"react": ">=0.13.3",
+	"react-tools": ">=0.13.3",
+	"jsx-loader": ">=0.13.2",
+	"js-csp": ">=0.4.1",
+	"immutable": ">=3.7.3",
+	"jade": ">=1.9.2"
+    },
+    "scripts": {
+	"server": "node --harmony server.js"
     }
 }

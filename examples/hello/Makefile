@@ -1,8 +1,10 @@
 
 .PHONY: build
 
+MAIN_FILES=hello.js
+
 run:
-	babel-node --harmony server
+	cd app && NODE_PATH=../node_modules node --harmony server
 
 dev:
 	webpack -d
@@ -12,3 +14,4 @@ watch:
 
 build:
 	webpack -p -d
+

@@ -1,12 +1,12 @@
 "use strict";
 
-var {router, keys} = require("./router");
+import {router, keys} from "./router";
+import {collect, build} from "./state";
+import {server, notFound} from "./server";
 
-var {collect, build} = require("./state");
-var utils = require("./utils");
-var client = require("./client"),
-    render = {react: require("./render/react")};
-var {server, renderJade, notFound} = require("./server");
+import * as utils from "./utils";
+import * as client from "./client";
+import * as react_render from "./render/react";
 
 module.exports = {
   router: router,
@@ -14,8 +14,8 @@ module.exports = {
   client: client,
   state: build,
   collect: collect,
-  render: render,
+  render: {react: react_render["default"]},
   server: server,
-  serverUtils: {renderJade: renderJade, notFound: notFound},
+  serverUtils: {notFound: notFound},
   utils: utils
 }

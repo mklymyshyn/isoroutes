@@ -1,19 +1,10 @@
 "use strict";
 
-var {take, put, chan, go} = require("js-csp");
-var {Map, List} = require("immutable");
-var keys = require("./router").keys;
-var {build, collect} = require("./state");
-var jsonattr = require("./utils").jsonattr;
-
-
-// Default template engine to render within HTML template on server
-function renderJade(templatePath, options) {
-  var jade = require("jade");
-  return (context) => jade.renderFile(
-    templatePath,
-    Object.assign(options, context));
-};
+import {take, put, chan, go} from "js-csp";
+import {Map, List} from "immutable";
+import {keys} from "./router";
+import {build, collect} from "./state";
+import {jsonattr} from "./utils";
 
 
 function notFound(_, res) {
@@ -65,4 +56,4 @@ function server(routes, template, error) {
   }
 }
 
-module.exports = {server: server, renderJade: renderJade, notFound: notFound}
+module.exports = {server: server, notFound: notFound}

@@ -1,6 +1,6 @@
-var {chan, go, take, put, CLOSED} = require("js-csp");
-
-var List = require("immutable").List;
+"use strict";
+import {chan, go, take, put, CLOSED} from "js-csp";
+import {List} from "immutable";
 
 var log = (r, rId) => {
   console.log([r.url, "->", rId].join(" "));

@@ -1,10 +1,11 @@
-var assert = require("chai").assert;
-var {keys, router, state, collect} = require("../src/isoroutes");
-var {timeout, take, put, chan, go} = require("js-csp");
+import * as helpers from "./helpers";
+import {assert} from "chai";
+import {render, keys, router, state, collect} from "../src/isoroutes";
+import {timeout, take, put, chan, go} from "js-csp";
+import {Map, List} from "immutable";
+import * as React from "react/addons";
 
-var react = require("../src/isoroutes").render.react;
-var React = require("react/addons");
-var stripattrs = require("./helpers").stripReactAttrs;
+var stripattrs = helpers.stripReactAttrs;
 
 // sample component
 var componentFactory = function (displayName, stateFunc) {
@@ -36,7 +37,7 @@ describe("React rendering", () => {
   it("should render Hello component", function(done) {
     var ch = chan();
     var routes = router([
-      ["/", react(Hello1)]
+      ["/", render.react(Hello1)]
     ]);
 
     var result = routes(state.server({"url": "/"}), ch);
@@ -57,7 +58,7 @@ describe("React rendering", () => {
   it("should able to render multiple components", function(done) {
     var ch = chan();
     var routes = router([
-      ["/", react(Hello1, Hello2)]
+      ["/", render.react(Hello1, Hello2)]
     ]);
     
     var result = routes(state.server({"url": "/"}), ch);
@@ -85,7 +86,7 @@ describe("React rendering", () => {
   it("should be able to collect states from multiple components", function (done) {
     var ch = chan(1);
     var routes = router([
-      ["/", react(Hello1, Hello2)]
+      ["/", render.react(Hello1, Hello2)]
     ]);
 
     assert(collect(state.server({"url": "/"}), routes, ch) === true,

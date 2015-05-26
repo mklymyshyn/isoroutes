@@ -1,9 +1,9 @@
 "use strict";
 /**EMACS* js3-indent-level:8 **/
 
-var {Map, List} = require("immutable");
-var params = require("./state").params;
-var compose = require("./utils").compose;
+import {Map, List} from "immutable";
+import {params} from "./state";
+import {compose} from "./utils";
 
 /**
  * Basic router factory which accept list of routes,

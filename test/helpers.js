@@ -1,7 +1,9 @@
-var assert = require("chai").assert;
-var {keys, router, state, collect} = require("../src/isoroutes");
-var {timeout, take, put, chan, go} = require("js-csp");
-var {Map, List} = require("immutable");
+"use strict";
+
+import {assert} from "chai";
+import {keys, router, state, collect} from "../src/isoroutes";
+import {timeout, take, put, chan, go} from "js-csp";
+import {Map, List} from "immutable";
 
 
 var dummyComponent = function (testCh, id, state, name, render) {
@@ -13,7 +15,7 @@ var dummyComponent = function (testCh, id, state, name, render) {
         client: context => "client renderer"
       },
       testCh = testCh || chan();
-  
+
   return (s, r, ch) => {
     go(function * () {
       yield put(ch, new Map([

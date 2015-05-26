@@ -1,9 +1,9 @@
-
-var assert = require("chai").assert;
-var {keys, router, state, collect} = require("../src/isoroutes");
-var {timeout, take, put, chan, go} = require("js-csp");
-var {Map, List} = require("immutable");
-var helpers = require("./helpers");
+import * as helpers from "./helpers";
+import {assert} from "chai";
+import {render, keys, router, state, collect} from "../src/isoroutes";
+import {timeout, take, put, chan, go} from "js-csp";
+import {Map, List} from "immutable";
+import * as React from "react/addons";
 
 
 describe("State", () => {

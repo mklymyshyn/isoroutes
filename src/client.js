@@ -1,9 +1,9 @@
 "use strict";
 //var isNode = typeof(process) !== 'undefined' && process.version !== '';
 
-var keys = require("./router.js").keys;
-var collect = require("./state.js").collect;
-var {take, chan, go, CLOSED} = require("js-csp");
+import {keys} from "./router.js";
+import {collect} from "./state.js";
+import {take, chan, go, CLOSED} from "js-csp";
 
 /*
  * Function which wait for state of all requested components and

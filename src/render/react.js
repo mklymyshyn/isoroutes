@@ -1,29 +1,26 @@
 "use strict";
 
-var React = require("react");
-var {wait, log} = require("../utils");
-var keys = require("../router").keys;
-var Map = require("immutable").Map;
-var {take, put, chan, go} = require("js-csp");
+import * as React from "react";
+import {wait, log} from "../utils";
+import {keys} from "../router";
+import {Map} from "immutable";
+import {take, put, chan, go} from "js-csp";
 
-var react = function (...components) {
+var react = (...components) => {
   var defaultNm = (i) => i === 0 ? "" : i;
   var componentId = (c, i) => c.templateId || "component" + defaultNm(i);
   
+  var element = (component, context) => React.createElement(
+    component, context.get(keys.state).toObject())
+
   var client = (component) => {
-    return (context) => {
-      console.log("Rendering, ", context);
-      return React.render(
-        component(context.get(keys.state).toObject()),
+    return (context) => React.render(
+        element(component, context),
         document.getElementById(context.get(keys.name)));
-    }
   };
   var server = (component) => {
-    return (context) => {
-      console.log(context.get(keys.state).toObject());
-      return React.renderToString(
-        component(context.get(keys.state).toObject()));
-    }
+    return (context) => React.renderToString(element(component, context));
+
   };
 
   return (state, route, renderCh) => {
@@ -36,14 +33,12 @@ var react = function (...components) {
       var stateCh = chan(),
           id = componentId(type, cid);
 
-      React.createFactory(type);
       type.state(state, stateCh, cid);
 
       go(function *() {
         var pairsCh = chan(1);
         yield wait(stateCh, pairsCh);
         
-        console.log(type, type.type);
         // We should link state from template to component somehow
         var context = Map(yield take(pairsCh));
         
@@ -66,7 +61,7 @@ var react = function (...components) {
       var params = state.get("params").map((val, key) => {
         return key + "=" + val;
       }).join(" ");
-      return "<" + component.displayName + " " + params + " />";
+      return "<" + component.name + " " + params + " />";
     };
     log(state, components.map(cLog));
     return components.length;
