@@ -1,41 +1,57 @@
 {
-    "name": "isoroutes",
-    "version": "0.0.3",
-    "description": "Isomorphic Router on CSP channels",
-
-    "keywords": [
-	"csp", "async", "concurrency", "channel",
-	"isomorphism", "isomorphic", "rendering", "router", "react",
-	"es6", "generators", "yield", "coroutines"
-    ],
-    "bugs": {
-	"email": "klymyshyn+isoroutes@gmail.com",
-	"url": "https://github.com/joymax/isorouter/issues"
-    },
-    "repository" : {
-	"type" : "git",
-	"url" : "https://github.com/joymax/isoroutes.git"
-    },
-    "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
-    "license": {
-	"type": "MIT",
-	"url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
-    },
-    "files": [
-      "src", "README.md", "CHANGELOG.md", "LICENSE"
-    ],
-    "main": "./src/isoroutes.js",
-    "dependencies": {
-	"babel": ">=5.4.4",
-	"regenerator": ">=0.8.26",
-	"react": ">=0.13.3",
-	"react-tools": ">=0.13.3",
-	"js-csp": ">=0.4.1",
-	"immutable": ">=3.7.3",
-	"chai": ">=2.3.0",
-	"mocha": ">=2.2.5"
-    },
-    "scripts": {
-	"test": "./node_modules/mocha/bin/mocha --harmony --require test/babel_hook.js"
+  "name": "isoroutes",
+  "version": "0.0.4",
+  "description": "Isomorphic Router on CSP channels",
+  "keywords": [
+    "csp",
+    "async",
+    "concurrency",
+    "channel",
+    "isomorphism",
+    "isomorphic",
+    "rendering",
+    "router",
+    "react",
+    "es6",
+    "generators",
+    "yield",
+    "coroutines"
+  ],
+  "bugs": {
+    "email": "klymyshyn+isoroutes@gmail.com",
+    "url": "https://github.com/joymax/isorouter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joymax/isoroutes.git"
+  },
+  "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "main": "./lib/isoroutes.js",
+  "dependencies": {
+    "babel": ">=5.4.4",
+    "babel-runtime": "^5.4.7",
+    "chai": ">=2.3.0",
+    "immutable": ">=3.7.3",
+    "js-csp": ">=0.4.1",
+    "mocha": ">=2.2.5",
+    "react": ">=0.13.3",
+    "react-tools": ">=0.13.3",
+    "regenerator": ">=0.8.26"
+  },
+  "scripts": {
+    "compile": "babel --state 0 --optional runtime -b regenerator -d lib/ src/",
+    "test": "./node_modules/mocha/bin/mocha --harmony --require test/babel_hook.js",
+    "prepublish": "npm run compile"
   }
 }
