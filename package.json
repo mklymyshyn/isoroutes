@@ -1,6 +1,6 @@
 {
     "name": "isoroutes",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Isomorphic Router on CSP channels",
     "keywords": [
 	"csp",
