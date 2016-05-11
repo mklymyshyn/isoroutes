@@ -35,7 +35,7 @@ function router(reactd_urls) {
         render: c.render
       })
     });
-  
+
     var reach = path => urls.find(u => u.get("paramXP").test(path) ? u : null);
 
     // declarative approach to customize request processing
@@ -48,5 +48,9 @@ function router(reactd_urls) {
 
 module.exports = {
     router: router,
-    keys: {id: "id", state: "state", name: "name", render: "render"}
+    keys: {id: "id",
+           state: "state", name: "name",
+           redirect: "_redirect_",
+           "next": "_next_",
+           render: "render"}
 }

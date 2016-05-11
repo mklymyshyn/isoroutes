@@ -27,11 +27,34 @@ var compose = f => {
 
 // jsonify attr
 var jsonattr = obj => JSON.stringify(obj).replace(/\"/g, "\\\"")
+/*
+ * Navigate shortcut
+ */
+function navigate(e, path) {
+  // we need to have access to history and window global objects
+  var path = path;
+  if (e) {
+    e.preventDefault();
+    path = e.target.getAttribute("href");
+  }
+
+  if (history.pushState) {
+    history.pushState({path: path}, '', path);
+    window.onpopstate();
+    return false;
+  }
+
+  // fallback
+  location.replace(path);
+  return false;
+}
+
 
 
 module.exports = {
   log: log,
   wait: wait,
   jsonattr: jsonattr,
-  compose: compose
+  compose: compose,
+  navigate: navigate
 }

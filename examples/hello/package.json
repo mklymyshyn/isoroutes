@@ -24,6 +24,8 @@
 	"babel": ">=5.4.4",
 	"babel-runtime": "*",
 	"babel-loader": "*",
+	"regenerator": "*",
+	"regenerator-loader": "*",
 	"core-js": "*",
 	"react": ">=0.13.3",
 	"react-tools": ">=0.13.3",

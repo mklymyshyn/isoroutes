@@ -11,11 +11,12 @@ import * as react_render from "./render/react";
 module.exports = {
   router: router,
   keys: keys,
-  client: client,
+  client: client["default"],
   state: build,
   collect: collect,
   render: {react: react_render["default"]},
   server: server,
   serverUtils: {notFound: notFound},
-  utils: utils
+  utils: utils,
+  navigate: utils.navigate
 }

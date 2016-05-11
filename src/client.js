@@ -20,6 +20,7 @@ function client(state, routes) {
   go(function *() {
     var elem = null;
     while((elem = yield take(channel)) != CLOSED) {
+      // TODO: check for redirect here
       elem.get(keys.render).client(elem);
     }
   });
@@ -27,4 +28,4 @@ function client(state, routes) {
   return true;
 }
 
-module.exports = client;
+export { client as default };

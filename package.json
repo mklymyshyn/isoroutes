@@ -1,57 +1,62 @@
 {
-  "name": "isoroutes",
-  "version": "0.0.4",
-  "description": "Isomorphic Router on CSP channels",
-  "keywords": [
-    "csp",
-    "async",
-    "concurrency",
-    "channel",
-    "isomorphism",
-    "isomorphic",
-    "rendering",
-    "router",
-    "react",
-    "es6",
-    "generators",
-    "yield",
-    "coroutines"
-  ],
-  "bugs": {
-    "email": "klymyshyn+isoroutes@gmail.com",
-    "url": "https://github.com/joymax/isorouter/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joymax/isoroutes.git"
-  },
-  "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
-  },
-  "files": [
-    "lib",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE"
-  ],
-  "main": "./lib/isoroutes.js",
-  "dependencies": {
-    "babel": ">=5.4.4",
-    "babel-runtime": "^5.4.7",
-    "chai": ">=2.3.0",
-    "immutable": ">=3.7.3",
-    "js-csp": ">=0.4.1",
-    "mocha": ">=2.2.5",
-    "react": ">=0.13.3",
-    "react-tools": ">=0.13.3",
-    "regenerator": ">=0.8.26"
-  },
-  "scripts": {
-    "compile": "babel --state 0 --optional runtime -b regenerator -d lib/ src/",
-    "test": "./node_modules/mocha/bin/mocha --harmony --require test/babel_hook.js",
-    "prepublish": "npm run compile"
-  }
+    "name": "isoroutes",
+    "version": "0.0.4",
+    "description": "Isomorphic Router on CSP channels",
+    "keywords": [
+	"csp",
+	"async",
+	"concurrency",
+	"channel",
+	"isomorphism",
+	"isomorphic",
+	"rendering",
+	"router",
+	"react",
+	"es6",
+	"generators",
+	"yield",
+	"coroutines"
+    ],
+    "bugs": {
+	"email": "klymyshyn+isoroutes@gmail.com",
+	"url": "https://github.com/joymax/isorouter/issues"
+    },
+    "repository": {
+	"type": "git",
+	"url": "https://github.com/joymax/isoroutes.git"
+    },
+    "author": "Max Klymyshyn <klymyshyn+isoroutes@gmail.com>",
+    "license": {
+	"type": "MIT",
+	"url": "https://github.com/ubolonton/js-csp/raw/master/LICENSE"
+    },
+    "files": [
+	"lib",
+	"src",
+	"README.md",
+	"CHANGELOG.md",
+	"LICENSE"
+    ],
+    "main": "./lib/isoroutes.js",
+    "dependencies": {
+      "babel": ">=5.4.4",
+	"babel-cli": ">=6.4.0",
+	"babel-runtime": "^5.4.7",
+	"babel-preset-stage-0": ">=6.3.13",
+	"babel-preset-es2015": ">=6.3.13",
+	"babel-preset-react": ">=6.3.13",
+	"chai": ">=2.3.0",
+	"immutable": ">=3.7.3",
+	"js-csp": ">=0.4.1",
+	"mocha": ">=2.2.5",
+	"react": ">=0.13.3",
+	"react-tools": ">=0.13.3",
+	"react-dom": ">=0.14.6",
+	"regenerator": ">=0.8.26"
+    },
+    "scripts": {
+	"compile": "babel --state 0 --presets react,es2015,stage-0 --optional runtime -b regenerator -d lib/ src/",
+	"test": "./node_modules/mocha/bin/mocha --harmony --require test/babel_hook.js",
+	"prepublish": "npm run compile"
+    }
 }

@@ -1,6 +1,9 @@
 "use strict";
 
-import * as React from "react";
+import React from 'react';
+import ReactDom from 'react-dom';
+import ReactDomServer from 'react-dom/server';
+
 import {wait, log} from "../utils";
 import {keys} from "../router";
 import {Map} from "immutable";
@@ -9,18 +12,24 @@ import {take, put, chan, go} from "js-csp";
 var react = (...components) => {
   var defaultNm = (i) => i === 0 ? "" : i;
   var componentId = (c, i) => c.templateId || "component" + defaultNm(i);
-  
+
   var element = (component, context) => React.createElement(
     component, context.get(keys.state).toObject())
 
   var client = (component) => {
-    return (context) => React.render(
-        element(component, context),
-        document.getElementById(context.get(keys.name)));
+    return (context) => ReactDom.render(
+      element(component, context),
+      document.getElementById(context.get(keys.name)));
   };
   var server = (component) => {
-    return (context) => React.renderToString(element(component, context));
+    return (context) => ReactDomServer.renderToString(element(component, context));
+  };
+  var redirect = (context) => {
+    if (context.get(keys.redirect) === undefined) return () => null;
 
+    return () => {
+      return {"location": context.get(keys.redirect),
+              "next": context.get(keys.next)}}
   };
 
   return (state, route, renderCh) => {
@@ -38,25 +47,30 @@ var react = (...components) => {
       go(function *() {
         var pairsCh = chan(1);
         yield wait(stateCh, pairsCh);
-        
+
         // We should link state from template to component somehow
         var context = Map(yield take(pairsCh));
-        
+
         // TODO: render STATE in case __state__=true in params
         // here we probably can create results factory?
         yield put(renderCh, Map([
-          [keys.id, cid],
-          [keys.state, context],
+          [keys.id, cid], // State ID
+          [keys.state, context], // state dump
+          // key: state_$STATE_ID
+          [keys.state + "_" + cid, context.toObject()], // accessible from Jade/template engine
           [keys.name, id],
           // generate render factories
-          [keys.render, {server: server(type),
-                         client: client(type)}]
+          [keys.render, {
+            server: server(type),
+            client: client(type),
+            redirect: redirect(context)
+          }]
         ]));
       });
-      
+
       return stateCh;
     });
-    
+
     var cLog = (component) => {
       var params = state.get("params").map((val, key) => {
         return key + "=" + val;
